@@ -1,0 +1,115 @@
+class GameState
+{
+    field String correctWord;
+    field String currentWord;
+    field int errorsCount;
+    field LetterKeeper keeper;
+
+    constructor GameState new()
+    {
+        let correctWord = String.new(0);       
+        let currentWord = String.new(0);
+        let errorsCount = 0;
+        let keeper = LetterKeeper.new();
+
+        return this;
+    }
+
+    method void dispose()
+    {
+        do correctWord.dispose();
+        do currentWord.dispose();
+        do keeper.dispose();
+        return;
+    }
+
+    method String getCorrectWord()
+    {
+        return correctWord;
+    }
+
+    method String getCurrentWord()
+    {
+        return currentWord;
+    }
+
+    method int getErrorsCount()
+    {
+        return errorsCount;
+    }
+
+    method LetterKeeper getKeeper()
+    {
+        return keeper;
+    }
+
+    method bool applyMove(char c)
+    {
+        var int i;
+        var bool result;
+
+        let result = false;
+        let i = 0;
+        while(i < correctWord.length())
+        {
+            if (c = correctWord.charAt(i))
+            {
+                do currentWord.setCharAt(i, c);
+                let result = true;
+            }
+            let i = i + 1;
+        }
+
+        if (~result)
+        {
+            if (keeper.checkLetter(c))
+            {
+                let errorsCount = errorsCount + 1;
+            }
+        }
+        do keeper.useLetter(c);
+
+        return result;
+    }
+
+    method bool isFinished()
+    {
+        var int i;
+        var bool result;
+
+        let result = true;
+        let i = 0;
+
+        while (i < currentWord.length())
+        {
+            if (currentWord.charAt(i) = 95)
+            {
+                let result = false;
+            }
+            let i = i + 1;
+        }
+
+        return result;
+    }
+
+    method void reset(String word)
+    {
+        var int i;
+
+        do correctWord.dispose();
+        let correctWord = word;        
+        let currentWord = String.new(word.length());
+        let i = 0;        
+        while(i < word.length())
+        {
+            do currentWord.appendChar(95);
+            let i = i + 1;
+        }
+
+        let errorsCount = 0;
+
+        do keeper.restart();
+
+        return;
+    }
+}

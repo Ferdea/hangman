@@ -1,44 +1,125 @@
 class Game
 {
-    field String correctWord;
-    field String currentWord;
-
-
-    method String getWord()
+    field Renderer renderer;
+    field int scene;
+    field int seed;
+    
+    constructor Game new()
     {
-        return currentWord;
-    }
-    constructor Game new(String correct)
-    {
-        var int iterator;
-        let iterator = 0;
-        let correctWord = correct;
-        let currentWord = String.new(correctWord.length());
-        while(iterator < correctWord.length())
-        {
-            do currentWord.appendChar(95);
-            let iterator = iterator + 1;
-        }
+        let renderer = Renderer.new("by Ferdea & HairySnake-zXc");
+        let scene = 0;
+
         return this;
     }
 
-    method bool turn(char sym)
+    method void dispose()
     {
-        var int iterator;
-        var bool result;
+        do correctWord.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
 
-        let result = false;
-        let iterator = 0;
-        while(iterator < correctWord.length())
+    method void run()
+    {
+        var GameState state;       
+        var char read;
+
+        let seed = 17;
+        let state = GameState.new();
+
+        do draw(state);
+        while (true)
         {
-            if (sym = correctWord.charAt(iterator))
+            let seed = seed * 11 + 13;
+            let read = fetchKey();            
+            if(update(state, read))
             {
-                do currentWord.setCharAt(iterator, sym);
-                let result = true;
+                do draw(state);
             }
-            let iterator = iterator + 1;
         }
 
-        return result;
-    }   
+        do renderer.dispose();
+        do state.dispose();
+
+        return;
+    }
+
+    method char fetchKey()
+    {
+        return Keyboard.keyPressed();
+    }
+
+    method bool update(GameState state, char c)
+    {
+        if (scene = 0)
+        {
+            if (c = 32)
+            {
+                do state.reset("ABOBA");
+                let scene = 1;
+                return true;
+            }
+        }
+
+        if (scene = 1)
+        {
+            if (LetterKeeper.correctLetter(c))
+            {
+                do state.applyMove(c);
+                
+                if (state.getErrorsCount() = 6)
+                {
+                    let scene = 3;
+                }
+                if (state.isFinished())
+                {
+                    let scene = 2;
+                }
+
+                return true;
+            }
+        }   
+        
+        if ((scene = 2) | (scene = 3))
+        {
+            if (c = 140)
+            {
+                let scene = 0;
+                return true;
+            }
+            if (c = 32)
+            {
+                do state.reset("ABOBA");
+                let scene = 1;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    method void draw(GameState state)
+    {
+        if (scene = 0)
+        {
+            do renderer.drawMenu();
+        }
+
+        if (scene = 1)
+        {
+            do renderer.drawState(state);
+        }
+
+        if (scene = 2)
+        {
+            do renderer.drawWin(state.getCorrectWord());
+        }
+
+        if (scene = 3)
+        {
+            do renderer.drawLose(state.getCorrectWord());
+        }
+
+        return;
+    }  
 }
