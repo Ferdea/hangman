@@ -1,0 +1,87 @@
+class LetterKeeper
+{
+    static Array alphabet;
+
+    field Array usedLetters;
+    field int usedLettersCount;
+
+    function void init()
+    {
+        var int i;
+        
+        let alphabet = Array.new(26);
+        let i = 0;
+        while (i < 26)
+        {
+            let alphabet[i] = 65 + i;
+        }
+
+        return;
+    }
+
+    function Array getAlphabet()
+    {   
+        return alphabet;
+    }
+
+    constructor KeyKeeper new()
+    {
+        let usedLettersCount = 0;
+        let usedLetters = Array.new(26);
+
+        return this;
+    }
+
+    method bool correctLetter(char c)
+    {
+        return (c > 64) & (c < 91);
+    }
+
+    method bool checkLetter(char c)
+    {
+        var bool result;
+        var int i;
+        var char currentChar;
+
+        let result = true;
+
+        let i = 0;
+        while (i < usedLettersCount)
+        {
+            let currentChar = usedLetters[i];
+            if (currentChar = c)
+            {
+                let result = false;
+            }
+        }
+
+        return result;
+    }
+
+    method bool useLetter(char c)
+    {
+        var bool isUsed;
+
+        if (~correctLetter(c))
+        {
+            return false;
+        }
+
+        let isUsed = checkLetter(c);
+
+        if (~isUsed)
+        {
+            let usedLetters[usedLettersCount] = c;
+            let usedLettersCount = usedLettersCount + 1;
+        }
+
+        return result;
+    }
+
+    method void restart()
+    {
+        let usedLettersCount = 0;
+        
+        return;
+    }
+}

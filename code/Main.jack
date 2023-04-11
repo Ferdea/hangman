@@ -1,6 +1,6 @@
 class Main
 {
-    function main()
+    function void main()
     {
         do Output.printString("Hello, World!");
         return;
