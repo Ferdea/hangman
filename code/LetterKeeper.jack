@@ -61,6 +61,7 @@ class LetterKeeper
             {
                 let result = false;
             }
+            let i = i + 1;
         }
 
         return result;
@@ -77,7 +78,7 @@ class LetterKeeper
 
         let isUsed = checkLetter(c);
 
-        if (~isUsed)
+        if (isUsed)
         {
             let usedLetters[usedLettersCount] = c;
             let usedLettersCount = usedLettersCount + 1;

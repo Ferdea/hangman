@@ -1,5 +1,31 @@
 class Window
 {
+    function void draw(int errorsCount, String word, LetterKeeper keeper)
+    {
+        do Screen.clearScreen();
+        do Window.drawHangman(errorsCount);
+        do Window.drawWord(word);
+        do Window.drawLetters(keeper);
+        return;
+    }
+
+    function void drawHangman(int errorsCount)
+    {
+        do Hangman.drawHangman(errorsCount);
+
+        return;
+    }
+
+    function void drawWord(String word)
+    {
+        var int off;
+        let off = word.length() / 2;
+        do Output.moveCursor(15, 31 - off);
+        do Output.printString(word);
+
+        return;
+    }
+
     function void drawLetters(LetterKeeper keeper)
     {
         var Array alphabet;
@@ -13,9 +39,9 @@ class Window
             let j = 0;
             while (j < 9)
             {
-                if ((~(i = 3)) & (~(j = 9)))
+                if ((~(i = 2)) | (~(j = 8)))
                 {
-                    do Output.moveCursor(i, j);
+                    do Output.moveCursor(17 + (2 * i), 23 + (2 * j));
 
                     let c = alphabet[i * 9 + j];
                     if (~(keeper.checkLetter(c)))

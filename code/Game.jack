@@ -6,7 +6,7 @@ class Game
 
     method String getWord()
     {
-        return correctWord;
+        return currentWord;
     }
     constructor Game new(String correct)
     {
@@ -16,24 +16,29 @@ class Game
         let currentWord = String.new(correctWord.length());
         while(iterator < correctWord.length())
         {
-            currentWord.appendChar(95);
+            do currentWord.appendChar(95);
             let iterator = iterator + 1;
         }
         return this;
     }
 
-    method void turn(char sym)
+    method bool turn(char sym)
     {
         var int iterator;
+        var bool result;
+
+        let result = false;
         let iterator = 0;
         while(iterator < correctWord.length())
         {
-            if (sym = correctWord[iterator])
+            if (sym = correctWord.charAt(iterator))
             {
-                currentWord.setCharAt(iterator, sym);
+                do currentWord.setCharAt(iterator, sym);
+                let result = true;
             }
             let iterator = iterator + 1;
         }
-        return;
+
+        return result;
     }   
 }

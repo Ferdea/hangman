@@ -5,18 +5,26 @@ class Main
         var LetterKeeper keeper;
         var Game game;
         var char read;
-        let keeper = LetterKeeper.new();
-        do Window.drawLetters(keeper);
-        
-        let game = Game.new("FAGGOT");
+        var int errorsCount;
 
+        let keeper = LetterKeeper.new();        
+        let game = Game.new("MOTHERFUCKER");
+        let errorsCount = 0;
+        do Window.draw(errorsCount, game.getWord(), keeper);
         while (true)
         {
             let read = Keyboard.keyPressed();
             if (LetterKeeper.correctLetter(read))
             {
-                game.turn(read);
-                do Output.drawLetters(game.getWord());
+                if (~game.turn(read))
+                {
+                    if (keeper.checkLetter(read))
+                    {
+                        let errorsCount = errorsCount + 1;
+                    }
+                }
+                do keeper.useLetter(read);
+                do Window.draw(errorsCount, game.getWord(), keeper);
             }
         }
         return;
