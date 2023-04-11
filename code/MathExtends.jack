@@ -1,0 +1,9 @@
+class MathExtends
+{
+    function int mod(int dividend, int divider)
+    {
+        var int quotient;
+        let quotient = dividend / divider; 
+        return dividend - (divider * quotient);        
+    }
+}

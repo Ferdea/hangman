@@ -1,0 +1,112 @@
+class SpriteLoader
+{
+    field Array Sprites;
+
+    constructor SpriteLoader new()
+    {
+        var Sprite sprite;
+        var Array content;
+        let Sprites = Array.new(2);
+
+		let content = Array.new(64);
+		let content[0] = -512;
+		let content[1] = 256;
+		let content[2] = 128;
+		let content[3] = 128;
+		let content[4] = 64;
+		let content[5] = 64;
+		let content[6] = 64;
+		let content[7] = 64;
+		let content[8] = -64;
+		let content[9] = 32;
+		let content[10] = 16;
+		let content[11] = 16;
+		let content[12] = 16;
+		let content[13] = 16;
+		let content[14] = 32;
+		let content[15] = -64;
+		let content[16] = 64;
+		let content[17] = 64;
+		let content[18] = 64;
+		let content[19] = 64;
+		let content[20] = -32704;
+		let content[21] = -32704;
+		let content[22] = -32704;
+		let content[23] = -32704;
+		let content[24] = -32704;
+		let content[25] = -32704;
+		let content[26] = -32704;
+		let content[27] = -32704;
+		let content[28] = -32704;
+		let content[29] = -32640;
+		let content[30] = 16512;
+		let content[31] = 16128;
+		let content[32] = 15;
+		let content[33] = 48;
+		let content[34] = 64;
+		let content[35] = 128;
+		let content[36] = 128;
+		let content[37] = 128;
+		let content[38] = 256;
+		let content[39] = 256;
+		let content[40] = 257;
+		let content[41] = 1794;
+		let content[42] = 2308;
+		let content[43] = 2308;
+		let content[44] = 2308;
+		let content[45] = 2308;
+		let content[46] = 2306;
+		let content[47] = 2305;
+		let content[48] = 2304;
+		let content[49] = 2304;
+		let content[50] = 2304;
+		let content[51] = 2304;
+		let content[52] = 2304;
+		let content[53] = 2304;
+		let content[54] = 2304;
+		let content[55] = 2304;
+		let content[56] = 2304;
+		let content[57] = 1792;
+		let content[58] = 256;
+		let content[59] = 256;
+		let content[60] = 256;
+		let content[61] = 256;
+		let content[62] = 129;
+		let content[63] = 126;
+		let sprite = Sprite.new(Vector.new(0, 0), Vector.new(2, 2), content);
+		let Sprites[0] = sprite;
+		let content = Array.new(16);
+		let content[0] = 320;
+		let content[1] = 20609;
+		let content[2] = 8212;
+		let content[3] = 8;
+		let content[4] = 2560;
+		let content[5] = 1186;
+		let content[6] = -24508;
+		let content[7] = 16384;
+		let content[8] = 2048;
+		let content[9] = 17034;
+		let content[10] = 260;
+		let content[11] = 5152;
+		let content[12] = 2048;
+		let content[13] = -24414;
+		let content[14] = 17476;
+		let content[15] = 0;
+		let sprite = Sprite.new(Vector.new(0, 0), Vector.new(1, 1), content);
+		let Sprites[1] = sprite;
+
+        return this;
+    }
+
+    method void dispose()
+    {
+        do Sprites.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method Array getSprites()
+    {
+        return Sprites;
+    }
+}

@@ -1,0 +1,84 @@
+class Sprite
+{
+    field Vector Position;
+    field Vector Size;
+    field Array Content;
+
+    constructor Sprite new(Vector position, Vector size, Array content)
+    {
+        let Position = position;
+        let Size = size;
+        let Content = content;
+        return this;
+    }
+
+    method void dispose()
+    {
+        do Position.dispose();
+        do Size.dispose();
+        do Content.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void draw()
+    {
+        var Vector currentPosition, offset;
+        var int i, j, k, screenPointer, memoryPointer, arrayIndex;
+        let screenPointer = 16384;
+        let i = 0;
+        while (i < Size.getX())
+        {
+            let j = 0;
+            while (j < Size.getY())
+            {
+                let offset = Vector.new(i, j);
+                let currentPosition = Vector.add(Position, offset);
+                do offset.dispose();
+                let k = 0;
+                while (k < 16)
+                {
+                    let memoryPointer = screenPointer + currentPosition.getX() + 
+                        (32 * (k + (16 * currentPosition.getY())));
+                    let arrayIndex = (16 * j) + (16 * Size.getY() * i) + k;
+                    do Memory.poke(memoryPointer, Content[arrayIndex]);
+                    let k = k + 1;
+                }
+                do currentPosition.dispose();
+                let j = j + 1;
+            }
+            let i = i + 1;
+        }     
+        return;
+    }
+
+    method void erase()
+    {
+        var Vector currentPosition, offset;
+        var int i, j, k, screenPointer, memoryPointer;
+        let screenPointer = 16384;
+        let i = 0;
+        while (i < Size.getX())
+        {
+            let j = 0;
+            while (j < Size.getY())
+            {
+                let offset = Vector.new(i, j);
+                let currentPosition = Vector.add(Position, offset);
+                do offset.dispose();
+                let k = 0;
+                while (k < 16)
+                {
+                    let memoryPointer = screenPointer + currentPosition.getX() + 
+                        (32 * (k + (16 * currentPosition.getY())));
+                    do Memory.poke(memoryPointer, 0);
+                    let k = k + 1;
+                }
+                do currentPosition.dispose();
+                let j = j + 1;
+            }
+            let i = i + 1;
+        }     
+        return;
+    }
+}

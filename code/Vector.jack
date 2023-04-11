@@ -1,0 +1,61 @@
+class Vector 
+{
+    field int X;
+    field int Y;
+
+    constructor Vector new(int x, int y)
+    {
+        let X = x;
+        let Y = y;
+        return this;
+    }
+
+    method void dispose()
+    {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method int getX()
+    {
+        return X;
+    }
+
+    method int getY()
+    {
+        return Y;
+    }
+
+    method int magnitude()
+    {
+        return Math.sqrt(X * X + Y * Y);
+    }
+
+    function Vector add(Vector firstVector, Vector secondVector)
+    {
+        return Vector.new(firstVector.getX() + secondVector.getX(), 
+            firstVector.getY() + secondVector.getY());
+    }
+
+    function Vector subtract(Vector firstVector, Vector secondVector)
+    {
+        return Vector.new(firstVector.getX() - secondVector.getX(), 
+            firstVector.getY() - secondVector.getY());
+    }
+
+    function int dot(Vector firstVector, Vector secondVector)
+    {
+        return firstVector.getX() * secondVector.getX() +
+            firstVector.getY() * secondVector.getY();
+    }
+
+    function Vector scalarMultiply(Vector vector, int scalar)
+    {
+        return Vector.new(vector.getX() * scalar, vector.getY() * scalar);
+    }
+
+    function Vector scalarDivide(Vector vector, int scalar)
+    {
+        return Vector.new(vector.getX() / scalar, vector.getY() / scalar);
+    }
+}

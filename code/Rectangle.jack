@@ -1,0 +1,84 @@
+class Rectangle
+{
+    field Vector Position;
+    field Vector Size;
+
+    constructor Rectangle new(Vector position, Vector size)
+    {
+        let Position = position;
+        let Size = size;
+        return this;
+    }
+
+    method void dispose()
+    {
+        do Position.dispose();
+        do Size.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method Vector getPosition()
+    {
+        return Position;
+    }
+
+    method Vector getSize()
+    {
+        return Size;
+    }
+
+    method void setPosition(Vector position)
+    {
+        if (position.getX() < 0 | position.getX() + Size.getX() > 511 |
+            position.getY() < 0 | position.getY() + Size.getY() > 255)
+        {
+            return;
+        }
+        do Position.dispose();
+        let Position = position;
+        return;
+    }
+
+    method void setSize(Vector size)
+    {
+        if (position.getX() < 0 | position.getX() + Size.getX() > 511 |
+            position.getY() < 0 | position.getY() + Size.getY() > 255)
+        {
+            return;
+        }
+        do Size.dispose();
+        let Size = size;
+        return;
+    }
+
+    method void move(Vector movement)
+    {
+        var Vector resultPosition;
+        let resultPosition = Vector.add(Position, movement);
+        if (resultPosition.getX() < 0 | resultPosition.getX() + Size.getX() > 511 |
+            resultPosition.getY() < 0 | resultPosition.getY() + Size.getY() > 255)
+        {
+            return;
+        }
+        do Position.dispose();
+        let Position = resultPosition;
+        return;
+    }
+
+    method void draw()
+    {
+        do Screen.setColor(true);
+        do Screen.drawRectangle(Position.getX(), Position.getY(),
+            Position.getX() + Size.getX(), Position.getY() + Size.getY());
+        return;
+    }
+
+    method void erase()
+    {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(Position.getX(), Position.getY(),
+            Position.getX() + Size.getX(), Position.getY() + Size.getY());
+        return;
+    }
+}
