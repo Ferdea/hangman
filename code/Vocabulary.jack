@@ -4,17 +4,72 @@ class Vocabulary
 
     function void init()
     {
-        let words = Array.new(10);
+        let words = Array.new(64);
         let words[0] = "ABOBA";
-        let words[1] = "NIGGER";
-        let words[2] = "FAGGOT";
-        let words[3] = "COCK";
-        let words[4] = "DICK";
-        let words[5] = "CUM";
-        let words[6] = "PORN";
-        let words[7] = "MOTHERFUCKER";
-        let words[8] = "WHORE";
-        let words[9] = "FUCK";
+        let words[1] = "MALLOC";
+        let words[2] = "INTEGER";
+        let words[3] = "BOOLEAN";
+        let words[4] = "NJRAT";
+        let words[5] = "TROJAN";
+        let words[6] = "HEURISTIC";
+        let words[7] = "ANDROID";
+        let words[8] = "CARBON";
+        let words[9] = "FORTRAN";
+        let words[10] = "CSHARP";
+        let words[11] = "DOTNET";
+        let words[12] = "ARRAY";
+        let words[13] = "DICTIONARY";
+        let words[14] = "BACKEND";
+        let words[15] = "FIIT";
+        let words[16] = "MAVUNGU";
+        let words[17] = "GITHUB";
+        let words[18] = "HASH";
+        let words[19] = "THREAD";
+        let words[20] = "INTERFACE";
+        let words[21] = "KERNEL";
+        let words[22] = "OBJECT";
+        let words[23] = "FEDORA";
+        let words[24] = "PETUHON";
+        let words[25] = "SOLID";
+        let words[26] = "CLONE";
+        let words[27] = "SERVER";
+        let words[28] = "CLR";
+        let words[29] = "EMACS";
+        let words[30] = "OBSIDIAN";
+        let words[31] = "DOTPEEK";
+        let words[32] = "JETBRAINS";
+        let words[33] = "EXPLORER";
+        let words[34] = "BOXING";
+        let words[35] = "ARCH";
+        let words[36] = "FOREACH";
+        let words[37] = "DEFINE";
+        let words[38] = "USING";
+        let words[39] = "INHERITION";
+        let words[40] = "METANIT";
+        let words[41] = "EXPRESSION";
+        let words[42] = "EXCEPTION";
+        let words[43] = "INTERPOLATION";
+        let words[44] = "QUATERNION";
+        let words[45] = "PROPERTY";
+        let words[47] = "PRIVATE";
+        let words[48] = "PUBLIC";
+        let words[49] = "PROTECTED";
+        let words[50] = "ENUMERATOR";
+        let words[51] = "BINARY";
+        let words[52] = "EMULATOR";
+        let words[53] = "CLIENT";
+        let words[54] = "LOCK";
+        let words[55] = "CIRCUIT";
+        let words[56] = "HASKELL";
+        let words[57] = "RUST";
+        let words[58] = "DEBUGGER";
+        let words[59] = "CONTINUE";
+        let words[60] = "RETURN";
+        let words[61] = "ABSTRACT";
+        let words[62] = "BREAKPOINT";
+        let words[63] = "PRESENTERINTERACTORDECORATOROBJECTROUTER";
+
+
 
         return;
     }
