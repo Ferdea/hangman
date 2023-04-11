@@ -2,31 +2,14 @@ class Main
 {
     function void main()
     {
-        var LetterKeeper keeper;
         var Game game;
-        var char read;
-        var int errorsCount;
 
-        let keeper = LetterKeeper.new();        
-        let game = Game.new("MOTHERFUCKER");
-        let errorsCount = 0;
-        do Window.draw(errorsCount, game.getWord(), keeper);
-        while (true)
-        {
-            let read = Keyboard.keyPressed();
-            if (LetterKeeper.correctLetter(read))
-            {
-                if (~game.turn(read))
-                {
-                    if (keeper.checkLetter(read))
-                    {
-                        let errorsCount = errorsCount + 1;
-                    }
-                }
-                do keeper.useLetter(read);
-                do Window.draw(errorsCount, game.getWord(), keeper);
-            }
-        }
+        let game = Game.new();
+        
+        do game.run();
+
+        do game.dispose();
+
         return;
     }
 

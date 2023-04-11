@@ -1,0 +1,161 @@
+class Renderer
+{
+    field String credits;
+
+    constructor Renderer new(String credit)
+    {
+        let credits = credit;
+        return this;
+    }
+
+    method void dispose()
+    {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void drawMenu()
+    {
+        do Screen.clearScreen();
+        do Output.moveCursor(7, 12);
+        do Output.printString("Hangman");
+        do Output.moveCursor(9, 12);
+        do Output.printString("Press space button");
+        do Output.moveCursor(21, 36);
+        do Output.printString(credits);
+        return;
+    }
+
+    method void drawWin(String correct)
+    {
+        do Screen.clearScreen();
+        do Output.moveCursor(7, 12);
+        do Output.printString("You win");
+        do drawEnd(correct);
+        return;
+    }
+
+    method void drawLose(String correct)
+    {
+        do Screen.clearScreen();
+        do Output.moveCursor(7, 12);
+        do Output.printString("You lose");
+        do drawEnd(correct);
+        return;
+    }
+
+    method void drawEnd(String correct)
+    {
+        do Output.moveCursor(9, 12);
+        do Output.printString("Correct word: ");
+        do Output.printString(correct);
+        do Output.moveCursor(11, 12);
+        do Output.printString("Press space button to play again");
+        do Output.moveCursor(13, 12);
+        do Output.printString("Press ESC button to main menu");
+        do Output.moveCursor(21, 36);
+        do Output.printString(credits);
+        return;
+    }
+
+    method void drawState(GameState state)
+    {
+        do Screen.clearScreen();
+        do drawHangman(state.getErrorsCount());
+        do drawWord(state.getCurrentWord());
+        do drawLetters(state.getKeeper());
+        return;
+    }
+
+    method void drawHangman(int errorsCount)
+    {
+        var int i;
+
+        let i = 0;
+        while (i < (errorsCount + 1))
+        {
+            do Hangman.drawHangmanPiece(i);
+
+            let i = i + 1;
+        }
+        return;
+    }
+
+    method void drawHangmanPiece(int i)
+    {
+        if (i = 0)
+        {
+            return;
+        }
+
+        do Screen.setColor(true);
+        if (i = 1)
+        {
+            do Screen.drawRectangle(200, 20, 210, 150);
+            do Screen.drawRectangle(190, 20, 300, 30);
+        }
+        if (i = 2)
+        {
+            do Screen.drawCircle(260, 60, 15);
+        }
+        if (i = 3)
+        {
+            do Screen.drawRectangle(255, 60, 265, 130);
+            do Screen.drawRectangle(225, 80, 255, 90);
+            do Screen.drawRectangle(265, 80, 295, 90);
+        }
+        if (i = 4)
+        {
+            do Screen.drawRectangle(225, 125, 255, 135);
+            do Screen.drawRectangle(265, 125, 295, 135);
+        }
+        if (i = 5)
+        {
+            do Screen.drawRectangle(255, 30, 265, 60);
+        }
+
+        return;
+    }
+
+    method void drawWord(String word)
+    {
+        var int off;
+        let off = word.length() / 2;
+        do Output.moveCursor(15, 31 - off);
+        do Output.printString(word);
+
+        return;
+    }
+
+    method void drawLetters(LetterKeeper keeper)
+    {
+        var Array alphabet;
+        var char c;
+        var int i, j;
+
+        let alphabet = LetterKeeper.getAlphabet();
+        let i = 0;
+        while (i < 3)
+        {
+            let j = 0;
+            while (j < 9)
+            {
+                if ((~(i = 2)) | (~(j = 8)))
+                {
+                    do Output.moveCursor(17 + (2 * i), 23 + (2 * j));
+
+                    let c = alphabet[i * 9 + j];
+                    if (~(keeper.checkLetter(c)))
+                    {
+                        let c = 95;
+                    }
+                    do Output.printChar(c);
+                }
+
+                let j = j + 1;
+            }
+            let i = i + 1;
+        }
+        return;
+    }
+}
