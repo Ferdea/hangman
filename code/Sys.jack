@@ -17,6 +17,7 @@ class Sys {
         do Keyboard.init();
         do Memory.init();
 
+        do Vocabulary.init();
         do KeyKeeper.init();
 
         do Main.main();

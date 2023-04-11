@@ -6,8 +6,6 @@ class Main
         var Array nigger;
         var int nigger2;
 
-        do Vocabulary.init();
-
         let aboba = Random.new(123, 10);
 
         let nigger = Vocabulary.getWords();
@@ -16,5 +14,4 @@ class Main
         return;
     }
 
-    
 }
