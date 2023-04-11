@@ -1,0 +1,26 @@
+class Vocabulary
+{
+    static Array words;
+
+    function void init()
+    {
+        let words = Array.new(10);
+        let words[0] = "ABOBA";
+        let words[1] = "NIGGER";
+        let words[2] = "FAGGOT";
+        let words[3] = "COCK";
+        let words[4] = "DICK";
+        let words[5] = "CUM";
+        let words[6] = "PORN";
+        let words[7] = "MOTHERFUCKER";
+        let words[8] = "WHORE";
+        let words[9] = "FUCK";
+
+        return;
+    }
+
+    function Array getWords()
+    {
+        return words;
+    }
+}

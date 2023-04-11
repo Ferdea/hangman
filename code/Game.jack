@@ -1,0 +1,34 @@
+class Game
+{
+    field String rightWord;
+    field Array usedLetters;
+
+
+    method Array contains(Char sym)
+    {
+        var int iterator;
+        var int resultCount;
+        var Array result;
+        var int pointer;
+        let result = Array.new(rightWord.length() + 1);
+        let iterator = 0;
+        while (iterator < rightWord.length() + 1)
+        {
+            let result[iterator] = -1;
+        }
+        
+        let iterator = 0;
+        let pointer = 1;
+        while (iterator < rightWord.length())
+        {
+            if (rightWord[iterator] = sym)
+            {
+                let result[pointer] = iterator;
+                let result[0] = pointer - 1;
+            }
+
+            let pointer = pointer + 1;
+            let iterator = iterator + 1;
+        }
+    }
+}

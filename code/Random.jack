@@ -1,0 +1,40 @@
+class Random
+{
+    field int Seed;
+    field int PreviousNumber;
+    field int CurrentNumber;
+    field int Modulo;
+
+    function int mod(int x, int y)
+    {
+        var int quotient;
+
+        let quotient = x / y;
+
+        return x - (quotient * y);
+    }
+
+    constructor Random new(int seed, int modulo)
+    {
+        let Seed = seed;
+        let PreviousNumber = seed;
+        let CurrentNumber = Random.mod(seed  * 11, modulo);
+        let Modulo = modulo;
+        return this;
+    }
+
+    method void dispose()
+    {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method int getNext()
+    {
+        var int temporary;
+        let temporary = CurrentNumber;
+        let CurrentNumber = Random.mod(CurrentNumber + PreviousNumber, Modulo);
+        let PreviousNumber = temporary;
+        return CurrentNumber;
+    }
+}
