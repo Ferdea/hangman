@@ -74,7 +74,7 @@ class Renderer
         let i = 0;
         while (i < (errorsCount + 1))
         {
-            do Hangman.drawHangmanPiece(i);
+            do drawHangmanPiece(i);
 
             let i = i + 1;
         }

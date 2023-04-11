@@ -1,25 +1,30 @@
 class Random
 {
-    field int Seed;
-    field int PreviousNumber;
-    field int CurrentNumber;
-    field int Modulo;
+    field int seed;
+    field int previousNumber;
+    field int currentNumber;
+    field int modulo;
 
     function int mod(int x, int y)
     {
-        var int quotient;
+        var int quotient, result;
 
         let quotient = x / y;
+        let result = x - (quotient * y);
+        if (result < 0)
+        {
+            let result = result + Math.abs(y);
+        }
 
-        return x - (quotient * y);
+        return result;
     }
 
-    constructor Random new(int seed, int modulo)
+    constructor Random new(int inputSeed, int inputModulo)
     {
-        let Seed = seed;
-        let PreviousNumber = seed;
-        let CurrentNumber = Random.mod(seed  * 11, modulo);
-        let Modulo = modulo;
+        let seed = inputSeed;
+        let previousNumber = inputSeed;
+        let currentNumber = Random.mod(inputSeed  * 11, inputModulo);
+        let modulo = inputModulo;
         return this;
     }
 
@@ -29,12 +34,20 @@ class Random
         return;
     }
 
+    method void setSeed(int inputSeed)
+    {
+        let seed = inputSeed;
+        let previousNumber = inputSeed;
+        let currentNumber = Random.mod(inputSeed  * 11, modulo);
+        return;
+    }
+
     method int getNext()
     {
         var int temporary;
-        let temporary = CurrentNumber;
-        let CurrentNumber = Random.mod(CurrentNumber + PreviousNumber, Modulo);
-        let PreviousNumber = temporary;
-        return CurrentNumber;
+        let temporary = currentNumber;
+        let currentNumber = Random.mod(currentNumber + previousNumber, modulo);
+        let previousNumber = temporary;
+        return currentNumber;
     }
 }

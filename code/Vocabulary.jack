@@ -69,13 +69,30 @@ class Vocabulary
         let words[62] = "BREAKPOINT";
         let words[63] = "PRESENTERINTERACTORDECORATOROBJECTROUTER";
 
-
-
         return;
+    }
+
+    function int getWordCount()
+    {
+        return 64;
     }
 
     function Array getWords()
     {
         return words;
+    }
+
+    function String getWord(int i)
+    {
+        return words[i];
+    }
+
+    function String getRandomWord(Random random)
+    {
+        var int i;
+
+        let i = random.getNext();
+
+        return words[i];
     }
 }

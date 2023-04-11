@@ -97,7 +97,8 @@ class GameState
         var int i;
 
         do correctWord.dispose();
-        let correctWord = word;        
+        let correctWord = word;  
+        do currentWord.dispose();      
         let currentWord = String.new(word.length());
         let i = 0;        
         while(i < word.length())
