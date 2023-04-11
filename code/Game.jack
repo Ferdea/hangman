@@ -8,7 +8,8 @@ class Game
     constructor Game new()
     {
         let renderer = Renderer.new("by Ferdea & HairySnake-zXc");
-        let random = Random.new(11, Vocabulary.getWordCount());
+        let seed = 17;
+        let random = Random.new(11);
         let scene = 0;
 
         return this;
@@ -25,20 +26,26 @@ class Game
     {
         var GameState state;       
         var char read;
+        var bool started;
 
+        let started = false;
         let seed = 17;
         let state = GameState.new();
 
         do draw(state);
         while (true)
         {
-            let seed = seed * 11 + 13;
-            do random.setSeed(seed);
+            if (~started)
+            {
+                let seed = seed + 1;
+                do random.setSeed(seed);
+            }            
 
             let read = fetchKey();            
             if(update(state, read))
             {
                 do draw(state);
+                let started = true;
             }
         }
 

@@ -3,7 +3,6 @@ class Random
     field int seed;
     field int previousNumber;
     field int currentNumber;
-    field int modulo;
 
     function int mod(int x, int y)
     {
@@ -19,12 +18,11 @@ class Random
         return result;
     }
 
-    constructor Random new(int inputSeed, int inputModulo)
+    constructor Random new(int inputSeed)
     {
         let seed = inputSeed;
         let previousNumber = inputSeed;
-        let currentNumber = Random.mod(inputSeed  * 11, inputModulo);
-        let modulo = inputModulo;
+        let currentNumber = inputSeed  * 11;
         return this;
     }
 
@@ -38,11 +36,11 @@ class Random
     {
         let seed = inputSeed;
         let previousNumber = inputSeed;
-        let currentNumber = Random.mod(inputSeed  * 11, modulo);
+        let currentNumber = inputSeed * 11;
         return;
     }
 
-    method int getNext()
+    method int getNext(int modulo)
     {
         var int temporary;
         let temporary = currentNumber;

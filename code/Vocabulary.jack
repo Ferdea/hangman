@@ -1,10 +1,12 @@
 class Vocabulary
 {
     static Array words;
+    static int wordsCount;
 
     function void init()
     {
-        let words = Array.new(64);
+        let wordsCount = 64;
+        let words = Array.new(wordsCount);
         let words[0] = "ABOBA";
         let words[1] = "MALLOC";
         let words[2] = "INTEGER";
@@ -74,25 +76,25 @@ class Vocabulary
 
     function int getWordCount()
     {
-        return 64;
-    }
-
-    function Array getWords()
-    {
-        return words;
-    }
-
-    function String getWord(int i)
-    {
-        return words[i];
+        return wordsCount;
     }
 
     function String getRandomWord(Random random)
     {
         var int i;
+        var String result;
 
-        let i = random.getNext();
+        if (wordsCount = 0)
+        {
+            return String.new(0);
+        }
 
-        return words[i];
+        let i = random.getNext(wordsCount);
+        let result = words[i];
+        let wordsCount = wordsCount - 1;
+        let words[i] = words[wordsCount];
+        let words[wordsCount] = result;
+
+        return result;
     }
 }
