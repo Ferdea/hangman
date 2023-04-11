@@ -14,6 +14,7 @@ class LetterKeeper
         while (i < 26)
         {
             let alphabet[i] = 65 + i;
+            let i = i + 1;
         }
 
         return;
@@ -24,7 +25,7 @@ class LetterKeeper
         return alphabet;
     }
 
-    constructor KeyKeeper new()
+    constructor LetterKeeper new()
     {
         let usedLettersCount = 0;
         let usedLetters = Array.new(26);
@@ -39,7 +40,7 @@ class LetterKeeper
         return;
     }
 
-    method bool correctLetter(char c)
+    function bool correctLetter(char c)
     {
         return (c > 64) & (c < 91);
     }
@@ -65,13 +66,13 @@ class LetterKeeper
         return result;
     }
 
-    method bool useLetter(char c)
+    method void useLetter(char c)
     {
         var bool isUsed;
 
-        if (~correctLetter(c))
+        if (~LetterKeeper.correctLetter(c))
         {
-            return false;
+            return;
         }
 
         let isUsed = checkLetter(c);
@@ -82,7 +83,7 @@ class LetterKeeper
             let usedLettersCount = usedLettersCount + 1;
         }
 
-        return result;
+        return;
     }
 
     method void restart()

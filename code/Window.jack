@@ -18,7 +18,7 @@ class Window
                     do Output.moveCursor(i, j);
 
                     let c = alphabet[i * 9 + j];
-                    if (keeper.checkLetter(c))
+                    if (~(keeper.checkLetter(c)))
                     {
                         let c = 95;
                     }
@@ -29,5 +29,6 @@ class Window
             }
             let i = i + 1;
         }
+        return;
     }
 }

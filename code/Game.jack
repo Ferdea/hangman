@@ -1,34 +1,39 @@
 class Game
 {
-    field String rightWord;
-    field Array usedLetters;
+    field String correctWord;
+    field String currentWord;
 
 
-    method Array contains(Char sym)
+    method String getWord()
+    {
+        return correctWord;
+    }
+    constructor Game new(String correct)
     {
         var int iterator;
-        var int resultCount;
-        var Array result;
-        var int pointer;
-        let result = Array.new(rightWord.length() + 1);
         let iterator = 0;
-        while (iterator < rightWord.length() + 1)
+        let correctWord = correct;
+        let currentWord = String.new(correctWord.length());
+        while(iterator < correctWord.length())
         {
-            let result[iterator] = -1;
-        }
-        
-        let iterator = 0;
-        let pointer = 1;
-        while (iterator < rightWord.length())
-        {
-            if (rightWord[iterator] = sym)
-            {
-                let result[pointer] = iterator;
-                let result[0] = pointer - 1;
-            }
-
-            let pointer = pointer + 1;
+            currentWord.appendChar(95);
             let iterator = iterator + 1;
         }
+        return this;
     }
+
+    method void turn(char sym)
+    {
+        var int iterator;
+        let iterator = 0;
+        while(iterator < correctWord.length())
+        {
+            if (sym = correctWord[iterator])
+            {
+                currentWord.setCharAt(iterator, sym);
+            }
+            let iterator = iterator + 1;
+        }
+        return;
+    }   
 }

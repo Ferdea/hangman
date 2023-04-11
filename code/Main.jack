@@ -2,15 +2,23 @@ class Main
 {
     function void main()
     {
-        var Random aboba;
-        var Array nigger;
-        var int nigger2;
+        var LetterKeeper keeper;
+        var Game game;
+        var char read;
+        let keeper = LetterKeeper.new();
+        do Window.drawLetters(keeper);
+        
+        let game = Game.new("FAGGOT");
 
-        let aboba = Random.new(123, 10);
-
-        let nigger = Vocabulary.getWords();
-        let nigger2 = aboba.getNext();
-        do Output.printString(nigger[nigger2]);
+        while (true)
+        {
+            let read = Keyboard.keyPressed();
+            if (LetterKeeper.correctLetter(read))
+            {
+                game.turn(read);
+                do Output.drawLetters(game.getWord());
+            }
+        }
         return;
     }
 
