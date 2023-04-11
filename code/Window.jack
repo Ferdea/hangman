@@ -1,0 +1,33 @@
+class Window
+{
+    function void drawLetters(LetterKeeper keeper)
+    {
+        var Array alphabet;
+        var char c;
+        var int i, j;
+
+        let alphabet = LetterKeeper.getAlphabet();
+        let i = 0;
+        while (i < 3)
+        {
+            let j = 0;
+            while (j < 9)
+            {
+                if ((~(i = 3)) & (~(j = 9)))
+                {
+                    do Output.moveCursor(i, j);
+
+                    let c = alphabet[i * 9 + j];
+                    if (keeper.checkLetter(c))
+                    {
+                        let c = 95;
+                    }
+                    do Output.printChar(c);
+                }
+
+                let j = j + 1;
+            }
+            let i = i + 1;
+        }
+    }
+}

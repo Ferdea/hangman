@@ -32,6 +32,13 @@ class LetterKeeper
         return this;
     }
 
+    method void dispose()
+    {
+        do usedLetters.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
     method bool correctLetter(char c)
     {
         return (c > 64) & (c < 91);
